@@ -1,0 +1,45 @@
+// Любевич Нікіта 101 група (4 варіант) 
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int N, T;
+    int *A;          
+    int i;
+
+    printf("Введіть N: ");
+    scanf("%d", &N);
+
+    A = (int*)malloc(N * sizeof(int));   
+
+    printf("Введіть елементи:\n");
+    for(i = 0; i < N; i++)
+        scanf("%d", &A[i]);
+
+    printf("Введіть T: ");
+    scanf("%d", &T);
+
+    int *p = A;      
+    int maxNeg = 0;
+    int found = 0;   
+
+    for(i = 0; i < N; i++, p++) {
+        if(*p == T) break;        
+
+        if(*p < 0) {
+            if(!found || *p > maxNeg) {
+                maxNeg = *p;
+                found = 1;
+            }
+        }
+    }
+
+    if(found)
+        printf("Макс від’ємне значення перед T = %d\n", maxNeg);
+    else
+        printf("Немає негативних елементів перед T\n");
+
+    free(A);     
+    return 0;
+}
