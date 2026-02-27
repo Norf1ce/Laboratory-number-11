@@ -1,0 +1,49 @@
+// Любевич Нікіта 101 група (4 варіант) 
+
+#include <stdio.h>      // бібліотека для введення та виведення
+#include <stdlib.h>     // бібліотека для роботи з динамічною пам'яттю
+
+int main() {
+    int n;                          
+    printf("Введіть n (<=200): ");  
+    scanf("%d", &n);                
+
+    int *A = (int*)malloc(n * sizeof(int));   
+    int *B = (int*)malloc(n * sizeof(int));   
+
+    int i, j, k = 0;                
+
+    printf("Введіть елементи масиву A:\n");
+    for(i = 0; i < n; i++)          
+        scanf("%d", &A[i]);         
+
+    for(i = 0; i < n; i++) {        // перебір кожного елемента A
+        int count = 0;              
+
+        for(j = 0; j < n; j++)      // перевірка скільки разів елемент зустрічається
+            if(A[i] == A[j])
+                count++;
+
+        if(count > 1) {             // якщо число повторюється
+            int exists = 0;         // чи вже є в B
+
+            for(j = 0; j < k; j++)  // чи вже додане у B
+                if(B[j] == A[i])
+                    exists = 1;
+
+            if(!exists)             // якщо ще немає у B
+                B[k++] = A[i];      
+        }
+    }
+
+    printf("Масив B:\n");
+    for(i = 0; i < k; i++) {        
+        printf("%d ", B[i]);
+        if((i + 1) % 5 == 0)        
+            printf("\n");
+    }
+
+    free(A);                        
+    free(B);                        
+    return 0;                       
+}
