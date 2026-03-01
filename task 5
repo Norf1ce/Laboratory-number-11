@@ -1,0 +1,45 @@
+// Любевич Нікіта 101 група (4 варіант) 
+
+#include <stdio.h>      
+#include <stdlib.h>     
+
+int main() {
+    int n;                              
+    printf("Введіть n: ");              
+    scanf("%d", &n);                   
+
+    double *a = (double*)malloc(n * sizeof(double));  // виділення пам'яті
+
+    if (a == NULL) {                    
+        printf("Помилка пам'яті\n");
+        return 1;                       
+    }
+
+    printf("Введіть елементи:\n");
+    for (int i = 0; i < n; i++)         
+        scanf("%lf", &a[i]);            
+
+    int b = 0;   // лічильник двох додатних
+    int d = 0;   // лічильник різних знаків
+    int z = 0;   // лічильник двох нулів
+    int t = 0;   // лічильник трьох нулів
+
+    for (int i = 0; i < n - 1; i++) {
+        if (a[i] > 0 && a[i+1] > 0) b++;          // дві додатні
+        if (a[i] * a[i+1] < 0) d++;               // різні знаки
+        if (a[i] == 0 && a[i+1] == 0) z++;        // два нулі
+    }
+
+    for (int i = 0; i < n - 2; i++) {
+        if (a[i] == 0 && a[i+1] == 0 && a[i+2] == 0)
+            t++;                                  // три нулі
+    }
+
+    printf("Дві додатні: %d\n", b);
+    printf("Різні знаки: %d\n", d);
+    printf("Два нулі: %d\n", z);
+    printf("Три нулі: %d\n", t);
+
+    free(a);                                      
+    return 0;
+}
