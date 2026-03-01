@@ -1,7 +1,7 @@
 // Любевич Нікіта 101 група (4 варіант) 
 
-#include <stdio.h>      // бібліотека для введення та виведення
-#include <stdlib.h>     // бібліотека для роботи з динамічною пам'яттю
+#include <stdio.h>      
+#include <stdlib.h>     
 
 int main() {
     int n;                          
